@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Future-state journey: the shift worker's instalment plan</title>
+<style>
+  :root {
+    --ink: #17212b;
+    --muted: #55626f;
+    --paper: #f6f7f9;
+    --card: #ffffff;
+    --line: #d5dae0;
+    --teal: #0d6b63;
+    --teal-tint: #e3f2f0;
+    --pain: #eceef1;
+    --pain-ink: #3d4752;
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #e8ecf0;
+      --muted: #a2adb9;
+      --paper: #12181e;
+      --card: #1a232c;
+      --line: #2f3b47;
+      --teal: #5cc9bd;
+      --teal-tint: #14332f;
+      --pain: #232d37;
+      --pain-ink: #c3ccd5;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  main { max-width: 1180px; margin: 0 auto; padding: 32px 24px 40px; }
+  header { display: grid; grid-template-columns: 1.1fr 1fr; gap: 24px 48px; align-items: end; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+  h1 { margin: 0; font-size: 28px; line-height: 1.2; font-weight: 600; letter-spacing: -0.01em; }
+  .brief { margin: 0; color: var(--muted); font-size: 14px; }
+  .brief strong { color: var(--ink); font-weight: 600; }
+  .brief p { margin: 0 0 6px; }
+
+  .timeline { margin-top: 28px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; position: relative; }
+  .stage { display: flex; flex-direction: column; min-width: 0; }
+  .pain-today { background: var(--pain); color: var(--pain-ink); border-radius: 8px; padding: 10px 14px; font-size: 14px; }
+  .pain-today span { display: block; font-size: 12px; color: var(--muted); }
+  .join { height: 22px; margin: 0 auto; width: 1px; background: var(--line); }
+  .card { background: var(--card); border: 1px solid var(--line); border-top: 3px solid var(--teal); border-radius: 8px; padding: 16px 16px 8px; flex: 1; }
+  .card h2 { margin: 0 0 12px; font-size: 18px; font-weight: 600; color: var(--teal); }
+  dl { margin: 0; }
+  dt { font-size: 13px; font-weight: 600; color: var(--muted); margin: 0 0 2px; }
+  dd { margin: 0 0 14px; font-size: 14px; }
+  dd .go { color: var(--teal); font-weight: 600; }
+  dd small { color: var(--muted); font-size: 12px; white-space: nowrap; }
+
+  .axis { grid-column: 1 / -1; position: relative; height: 34px; margin-top: 4px; }
+  .axis::before { content: ""; position: absolute; left: 0; right: 0; top: 16px; height: 2px; background: var(--teal); opacity: .45; }
+  .axis::after { content: ""; position: absolute; right: -2px; top: 10px; border-left: 10px solid var(--teal); border-top: 7px solid transparent; border-bottom: 7px solid transparent; opacity: .7; }
+  .dot { position: absolute; top: 3px; width: 28px; height: 28px; margin-left: -14px; border-radius: 50%; background: var(--teal); color: var(--card); font-weight: 600; font-size: 14px; display: grid; place-items: center; }
+  .d1 { left: 12.5%; } .d2 { left: 37.5%; } .d3 { left: 62.5%; } .d4 { left: 87.5%; }
+
+  .advantages { margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--line); }
+  .advantages h2 { margin: 0 0 14px; font-size: 18px; font-weight: 600; }
+  .adv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .adv { background: var(--teal-tint); border-radius: 8px; padding: 14px 16px; font-size: 14px; }
+  .adv b { display: block; margin-bottom: 4px; font-size: 15px; }
+  .adv .go { color: var(--teal); font-weight: 600; }
+
+  footer { margin-top: 22px; font-size: 12px; color: var(--muted); }
+
+  @media (max-width: 960px) {
+    header { grid-template-columns: 1fr; }
+    .timeline { grid-template-columns: 1fr 1fr; }
+    .axis { display: none; }
+    .adv-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .timeline { grid-template-columns: 1fr; }
+    main { padding: 20px 16px 32px; }
+    h1 { font-size: 24px; }
+  }
+  @media print {
+    @page { size: A4 landscape; margin: 10mm; }
+    body { font-size: 11px; background: #fff; color: #000; }
+    main { padding: 0; max-width: none; }
+    h1 { font-size: 20px; }
+    .timeline { gap: 10px; margin-top: 14px; }
+    .card { padding: 10px 10px 2px; }
+    dd { margin-bottom: 8px; font-size: 11px; }
+    .advantages { margin-top: 14px; padding-top: 12px; }
+    .adv { font-size: 11px; padding: 8px 10px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>Future-state journey: choosing a plan she can keep</h1>
+    </div>
+    <div class="brief">
+      <p><strong>Persona:</strong> consumer with one or two open claims, irregular shifts, no fixed monthly income.</p>
+      <p><strong>Strategy:</strong> get customers to choose a plan they can sustain, by making affordability visible and explained at the moment of decision.</p>
+    </div>
+  </header>
+
+  <section class="timeline" aria-label="Four-stage future-state journey">
+
+    <article class="stage">
+      <div class="pain-today"><span>Pain today</span>Unclear income ask</div>
+      <div class="join" aria-hidden="true"></div>
+      <div class="card">
+        <h2>1. Understand</h2>
+        <dl>
+          <dt>User action</dt>
+          <dd>Opens portal on break <span class="go">→</span> sees why income is asked and kept.</dd>
+          <dt>Internal state</dt>
+          <dd>Time-pressed, wary <span class="go">→</span> reassured by a plain purpose and retention explainer.</dd>
+          <dt>Pain point addressed</dt>
+          <dd>Unexplained income ask <span class="go">→</span> fewer parked journeys. <small>N-01, T-206</small></dd>
+        </dl>
+      </div>
+    </article>
+
+    <article class="stage">
+      <div class="pain-today"><span>Pain today</span>Parks the journey</div>
+      <div class="join" aria-hidden="true"></div>
+      <div class="card">
+        <h2>2. Share income</h2>
+        <dl>
+          <dt>User action</dt>
+          <dd>Selects "my income varies" <span class="go">→</span> journey estimates a sustainable amount.</dd>
+          <dt>Internal state</dt>
+          <dd>Fears typing the wrong number <span class="go">→</span> feels safe answering honestly. <small>N-06</small></dd>
+          <dt>Pain point addressed</dt>
+          <dd>"This month or normal month?" <span class="go">→</span> clear wording ends the guessing. <small>N-01</small></dd>
+        </dl>
+      </div>
+    </article>
+
+    <article class="stage">
+      <div class="pain-today"><span>Pain today</span>Plan order used as a rule</div>
+      <div class="join" aria-hidden="true"></div>
+      <div class="card">
+        <h2>3. Choose plan</h2>
+        <dl>
+          <dt>User action</dt>
+          <dd>Compares plans against her estimate <span class="go">→</span> picks one she can afford.</dd>
+          <dt>Internal state</dt>
+          <dd>Tempted by the "right answer" shortcut <span class="go">→</span> decides on evidence, not order.</dd>
+          <dt>Pain point addressed</dt>
+          <dd>Plan order as decision rule <span class="go">→</span> fit and late-payment consequences shown. <small>N-02, T-208</small></dd>
+        </dl>
+      </div>
+    </article>
+
+    <article class="stage">
+      <div class="pain-today"><span>Pain today</span>Missed second payment</div>
+      <div class="join" aria-hidden="true"></div>
+      <div class="card">
+        <h2>4. Stay on track</h2>
+        <dl>
+          <dt>User action</dt>
+          <dd>Picks a pay-day-aligned date, confirms <span class="go">→</span> fewer missed second payments.</dd>
+          <dt>Internal state</dt>
+          <dd>Anxious about falling behind <span class="go">→</span> prepared, knows what a miss means.</dd>
+          <dt>Pain point addressed</dt>
+          <dd>Blind commitment, lost answers <span class="go">→</span> consequences shown, answers kept, agents see context. <small>T-204, B4</small></dd>
+        </dl>
+      </div>
+    </article>
+
+    <div class="axis" aria-hidden="true">
+      <span class="dot d1">1</span><span class="dot d2">2</span><span class="dot d3">3</span><span class="dot d4">4</span>
+    </div>
+  </section>
+
+  <section class="advantages">
+    <h2>Three advantages over the manual workaround</h2>
+    <div class="adv-grid">
+      <div class="adv"><b>One sitting</b>Income answered in-flow <span class="go">→</span> no parking, fewer abandoned journeys.</div>
+      <div class="adv"><b>Evidence-based choice</b>Plans shown against her budget <span class="go">→</span> fewer broken agreements than plan-order guessing.</div>
+      <div class="adv"><b>Agent-ready context</b>Agents see her entries and reasoning <span class="go">→</span> shorter calls, no re-asking.</div>
+    </div>
+  </section>
+
+  <footer>
+    All figures and references (N-, T-, B-) come from fictional sample data, not Riverty research. Pay-day alignment in stage 4 is inferred from the shift-income missed-payment rate and needs validation. The affordability estimate needs compliance review.
+  </footer>
+</main>
+</body>
+</html>
