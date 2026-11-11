@@ -11,4 +11,4 @@ Commits to that plan.
 Finds the amount too high and misses the second payment.
 - **Core frustration, the exact moment the process feels most “broken”:** The plan review screen, at the instant she chooses the plan
 - **The evidence, a specific quote or behavior from the research that proves this:** “I picked the plan with the lowest number of months because it looked like the right answer. The amount was too high and I missed the second payment.”
-- **Your journey map file name (e.g. journey-map.html):** journey-map.html
+- **Your journey map file name (e.g. journey-map.html):** future-state-journey.html
