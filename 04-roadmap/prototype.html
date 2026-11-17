@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Income explainer · Riverty BU Collection · Prototype</title>
+<style>
+:root{
+  --bg:#eef1f0; --card:#ffffff; --ink:#15211e; --ink2:#52625d; --line:#cfd8d5;
+  --brand:#0f6b5c; --brand-ink:#ffffff; --soft:#e2f0ec; --err:#a23a3a; --err-bg:#f8e3e3;
+  --warn-bg:#fbf1d4; --warn:#7a5d0a; --focus:#15211e;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f1614; --card:#18221f; --ink:#e8efec; --ink2:#9fb0aa; --line:#2b3a36;
+    --brand:#4cc2ac; --brand-ink:#08201b; --soft:#1d3530; --err:#ee9393; --err-bg:#3f2323;
+    --warn-bg:#3a3118; --warn:#e0bf62; --focus:#e8efec;
+  }
+}
+*{box-sizing:border-box}
+html{color-scheme:light dark}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:"Avenir Next","Segoe UI",Helvetica,Arial,sans-serif; line-height:1.5}
+.app{max-width:420px; min-width:360px; margin:0 auto; padding:16px 16px 40px}
+@media (max-width:360px){.app{min-width:0}}
+.chip{display:block; background:var(--warn-bg); color:var(--warn); font-size:12px; padding:6px 10px; border-radius:6px; margin-bottom:12px}
+.progress{font-size:13px; color:var(--ink2); margin:0 0 4px}
+h1{font-family:Georgia,"Times New Roman",serif; font-size:26px; line-height:1.15; margin:0 0 6px}
+.lead{color:var(--ink2); font-size:15px; margin:0 0 20px}
+.panel{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:18px}
+label{display:block; font-weight:650; margin-bottom:4px}
+.helper{font-size:14px; color:var(--ink2); margin:0 0 8px}
+.field{display:flex; align-items:center; border:2px solid var(--line); border-radius:8px; background:var(--card)}
+.field:focus-within{border-color:var(--brand)}
+.field.bad{border-color:var(--err)}
+.field span{padding:0 0 0 14px; color:var(--ink2)}
+.field input{flex:1; min-width:0; border:0; background:transparent; color:var(--ink); font:inherit; font-size:20px; padding:12px 14px 12px 8px; outline:none}
+.err{color:var(--err); font-size:14px; margin:6px 0 0}
+button{font:inherit; cursor:pointer}
+button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--focus); outline-offset:2px}
+.trigger{background:none; border:0; color:var(--brand); text-decoration:underline; min-height:44px; min-width:44px; padding:0 2px; font-size:15px; font-weight:600; text-align:left}
+.explainer{background:var(--soft); border-radius:8px; padding:14px 16px; margin:4px 0 8px}
+.explainer[hidden]{display:none}
+.explainer h2{font-size:15px; margin:0 0 4px}
+.explainer p{margin:0 0 12px; font-size:15px}
+.btn{display:block; width:100%; min-height:48px; border-radius:8px; border:0; font-weight:650; font-size:16px}
+.primary{background:var(--brand); color:var(--brand-ink)}
+.secondary{background:transparent; color:var(--ink); border:1px solid var(--line)}
+.gotit{width:auto; padding:0 20px; min-height:44px}
+.stack{display:flex; flex-direction:column; gap:10px; margin-top:16px}
+.confirm-line{font-size:22px; font-weight:700; margin:6px 0 2px}
+.muted{color:var(--ink2); font-size:14px}
+.stub{border:2px dashed var(--line); border-radius:10px; padding:18px; text-align:center}
+[data-screen]{display:none}
+[data-screen].on{display:block}
+.dev{margin-top:28px; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:4px 16px 12px; font-size:13px}
+.dev summary{cursor:pointer; padding:10px 0; font-weight:650}
+.dev label{display:flex; gap:8px; align-items:center; font-weight:400; margin:6px 0}
+.dev h3{font-size:13px; margin:14px 0 4px}
+.log{font-family:ui-monospace,Menlo,Consolas,monospace; font-size:12px; background:var(--bg); border-radius:6px; padding:8px; max-height:180px; overflow:auto; margin:0; white-space:pre-wrap}
+.kv{display:grid; grid-template-columns:auto 1fr; gap:2px 12px; margin:0}
+.kv dt{color:var(--ink2)} .kv dd{margin:0}
+.row{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+.mini{border:1px solid var(--line); background:transparent; color:var(--ink); border-radius:6px; padding:6px 10px; font-size:13px; min-height:36px}
+</style>
+</head>
+<body>
+<div class="app">
+  <span class="chip" id="draftChip">Prototype with placeholder copy. Replace with Risk-approved wording before any release.</span>
+
+  <!-- SCREEN 1 + 2: income step (explainer is a state of this step) -->
+  <section data-screen="income" class="on" aria-labelledby="t1">
+    <p class="progress">Step 2 of 4 · Your income</p>
+    <h1 id="t1">Tell us your income</h1>
+    <p class="lead">We use this to check which repayment plans fit you.</p>
+
+    <div class="panel">
+      <label for="income">Monthly income</label>
+      <p class="helper" id="helper"></p>
+      <div class="field" id="fieldWrap">
+        <span aria-hidden="true">€</span>
+        <input id="income" inputmode="decimal" autocomplete="off" aria-describedby="helper err" placeholder="0">
+      </div>
+      <p class="err" id="err" role="alert" hidden></p>
+
+      <button type="button" class="trigger" id="trigger" aria-expanded="false" aria-controls="explainer">Which income do I enter?</button>
+
+      <div class="explainer" id="explainer" hidden role="region" aria-label="Which income to enter">
+        <h2>Which income to enter</h2>
+        <p id="defText"></p>
+        <h2>If your pay changes</h2>
+        <p id="ruleText"></p>
+        <button type="button" class="btn secondary gotit" id="gotit">Got it</button>
+      </div>
+
+      <div class="stack"><button type="button" class="btn primary" id="continue">Continue</button></div>
+    </div>
+  </section>
+
+  <!-- SCREEN 3: success / confirmation -->
+  <section data-screen="confirm" aria-labelledby="t3">
+    <p class="progress">Step 2 of 4 · Your income</p>
+    <h1 id="t3">Income entered</h1>
+    <div class="panel">
+      <p class="muted" style="margin:0">You entered</p>
+      <p class="confirm-line" id="confirmLine"></p>
+      <p class="muted" id="confirmBasis"></p>
+      <div class="stack">
+        <button type="button" class="btn primary" id="toDoc">Continue to document step</button>
+        <button type="button" class="btn secondary" id="edit">Change my income</button>
+        <button type="button" class="trigger" id="reopen">Which income do I enter?</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stub: out of scope -->
+  <section data-screen="doc" aria-labelledby="t4">
+    <p class="progress">Step 3 of 4 · Your documents</p>
+    <h1 id="t4">Document step</h1>
+    <div class="stub"><p style="margin:0">Out of scope for this prototype. Reaching this screen counts as the primary metric event.</p></div>
+    <div class="stack"><button type="button" class="btn secondary" id="restart">Restart prototype</button></div>
+  </section>
+
+  <details class="dev">
+    <summary>Prototype controls and event log</summary>
+
+    <h3>Simulate unhappy paths</h3>
+    <label><input type="checkbox" id="simFail"> Explainer fails to load (E1)</label>
+    <label><input type="checkbox" id="simApproval"> Copy approval reference missing (FR-7)</label>
+
+    <h3>Primary metric and evals</h3>
+    <dl class="kv">
+      <dt>Reached document step</dt><dd id="mReach">no</dd>
+      <dt>Reach rate vs 80.7%</dt><dd>Not measurable. Baseline, denominator and window are not defined.</dd>
+      <dt>Time: step viewed to income confirmed</dt><dd id="mTime">n/a</dd>
+      <dt>Explainer opens</dt><dd id="mOpens">0</dd>
+    </dl>
+
+    <h3>Event log (FR-8)</h3>
+    <pre class="log" id="log">No events yet.</pre>
+    <div class="row">
+      <button type="button" class="mini" id="simLeave">Simulate leaving the income step</button>
+    </div>
+  </details>
+</div>
+
+<script>
+/* ---------- Config: copy and rules (placeholders, to be replaced by Risk-approved text) ---------- */
+const COPY = {
+  helper: "Net monthly income, after tax and deductions.",
+  definition: "Enter your net monthly income: the amount you receive after tax and deductions.",
+  irregularRule: "If your pay changes from month to month, enter the average of your last 3 months.",
+  basisLabel: "Monthly net income",
+  approvalRef: "PLACEHOLDER-NOT-APPROVED"
+};
+/* Stand-in for the existing validation, which this feature must not change (FR-6) */
+const VALIDATION = { min: 0.01, max: 1000000, msg: "Enter an amount greater than 0." };
+
+/* ---------- State ---------- */
+const $ = id => document.getElementById(id);
+const S = { explainerViewed:false, editedLogged:false, opens:0, startedAt:null, confirmedAt:null, completed:false, docReached:false, value:null };
+const events = [];
+
+function log(name, extra){
+  events.push({t:new Date(), name, extra});
+  $("log").textContent = events.map(e =>
+    e.t.toLocaleTimeString([], {hour12:false}) + "  " + e.name + (e.extra ? "  " + e.extra : "")).join("\n");
+  $("mOpens").textContent = S.opens;
+  $("mReach").textContent = S.docReached ? "yes" : "no";
+  $("mTime").textContent = (S.startedAt && S.confirmedAt)
+    ? ((S.confirmedAt - S.startedAt)/1000).toFixed(1) + " s (target: median ≤ 60 s on mobile)" : "n/a";
+}
+
+function show(name){
+  document.querySelectorAll("[data-screen]").forEach(s => s.classList.toggle("on", s.dataset.screen === name));
+}
+
+/* ---------- Copy gating (FR-7, never invent) ---------- */
+function approved(){ return !$("simApproval").checked; }
+function failed(){ return $("simFail").checked; }
+
+function renderCopy(){
+  const ok = approved();
+  $("helper").textContent = ok ? COPY.helper : "";
+  $("helper").hidden = !ok;
+  /* If the approved copy is missing or the explainer fails, show no trigger and no invented text; the field still works */
+  const canExplain = ok && !failed();
+  $("trigger").hidden = !canExplain;
+  $("reopen").hidden = !canExplain;
+  if(!canExplain) closeExplainer(false);
+  $("draftChip").textContent = ok
+    ? "Prototype with placeholder copy. Replace with Risk-approved wording before any release."
+    : "Approval reference missing: copy hidden. In production this blocks the release.";
+}
+
+/* ---------- Explainer: opens in place, never touches the input value (FR-1, FR-2) ---------- */
+function openExplainer(){
+  if(!approved()) return;
+  if(failed()){ log("explainer_load_failed"); return; }
+  $("defText").textContent = COPY.definition;
+  $("ruleText").textContent = COPY.irregularRule;
+  $("explainer").hidden = false;
+  $("trigger").setAttribute("aria-expanded","true");
+  S.explainerViewed = true; S.opens++;
+  log("explainer_opened", "approval=" + COPY.approvalRef);
+  $("explainer").scrollIntoView({block:"nearest"});
+}
+function closeExplainer(refocus){
+  if($("explainer").hidden) return;
+  $("explainer").hidden = true;
+  $("trigger").setAttribute("aria-expanded","false");
+  if(refocus) $("income").focus();
+}
+
+/* ---------- Validation and continue ---------- */
+function parseAmount(raw){
+  const s = raw.trim().replace(/\s/g,"");
+  if(!s) return NaN;
+  const norm = s.includes(",") ? s.replace(/\./g,"").replace(",",".") : s;
+  return /^\d+(\.\d{1,2})?$/.test(norm) ? parseFloat(norm) : NaN;
+}
+function setError(msg){
+  $("err").hidden = !msg; $("err").textContent = msg || "";
+  $("fieldWrap").classList.toggle("bad", !!msg);
+  $("income").setAttribute("aria-invalid", msg ? "true" : "false");
+}
+function tryContinue(){
+  const v = parseAmount($("income").value);
+  if(isNaN(v) || v < VALIDATION.min || v > VALIDATION.max){ setError(VALIDATION.msg); $("income").focus(); return; }
+  setError("");
+  S.value = v; S.completed = true; S.confirmedAt = new Date();
+  closeExplainer(false);
+  $("confirmLine").textContent = new Intl.NumberFormat("de-DE",{style:"currency",currency:"EUR"}).format(v);
+  $("confirmBasis").textContent = approved() ? COPY.basisLabel : "";
+  log("income_step_completed", "value_not_logged");
+  show("confirm");
+  $("toDoc").focus();
+}
+
+/* ---------- Wiring ---------- */
+$("trigger").addEventListener("click", () => $("explainer").hidden ? openExplainer() : closeExplainer(true));
+$("gotit").addEventListener("click", () => closeExplainer(true));
+$("continue").addEventListener("click", tryContinue);
+$("income").addEventListener("keydown", e => { if(e.key === "Enter") tryContinue(); });
+$("income").addEventListener("input", () => {
+  setError("");
+  if(S.explainerViewed && !S.editedLogged){ S.editedLogged = true; log("income_edited_after_explainer_viewed"); }
+});
+$("edit").addEventListener("click", () => { S.completed = false; S.confirmedAt = null; show("income"); $("income").focus(); });
+$("reopen").addEventListener("click", () => { show("income"); openExplainer(); });
+$("toDoc").addEventListener("click", () => { S.docReached = true; log("document_step_reached"); show("doc"); });
+$("simFail").addEventListener("change", renderCopy);
+$("simApproval").addEventListener("change", renderCopy);
+
+function dropoff(){
+  if(!S.completed && S.startedAt && !S.docReached){
+    log("income_step_dropoff", "explainer_viewed=" + S.explainerViewed);
+    S.startedAt = null;
+  }
+}
+$("simLeave").addEventListener("click", () => { dropoff(); });
+window.addEventListener("pagehide", dropoff);
+
+function start(){
+  S.explainerViewed = S.editedLogged = S.completed = S.docReached = false;
+  S.opens = 0; S.value = null; S.confirmedAt = null; S.startedAt = new Date();
+  $("income").value = ""; setError("");
+  $("explainer").hidden = true; $("trigger").setAttribute("aria-expanded","false");
+  renderCopy(); show("income");
+  log("income_step_reached");
+}
+$("restart").addEventListener("click", start);
+start();
+</script>
+</body>
+</html>
