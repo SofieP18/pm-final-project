@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BU Collection · Product roadmap</title>
+<style>
+:root{
+  --bg:#f3f5f4; --surface:#ffffff; --ink:#14201d; --ink-2:#4a5a55; --line:#d6dedb;
+  --now:#0f6b5c; --next:#2c5aa0; --later:#6b6f76; --cut:#a23a3a;
+  --q-win:#1d7a4a; --q-win-bg:#dff1e6;
+  --q-bet:#2c5aa0; --q-bet-bg:#e0e9f6;
+  --q-fill:#8a6a12; --q-fill-bg:#f5ecd2;
+  --q-sink:#a23a3a; --q-sink-bg:#f6dede;
+  --focus:#14201d;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#101715; --surface:#18221f; --ink:#e8efec; --ink-2:#9fb0aa; --line:#2b3a36;
+    --now:#4cc2ac; --next:#7fa7e6; --later:#a2a7ae; --cut:#e57f7f;
+    --q-win:#6fd39b; --q-win-bg:#1c3a2b;
+    --q-bet:#8db4f2; --q-bet-bg:#1d2f4a;
+    --q-fill:#e0bf62; --q-fill-bg:#3a3118;
+    --q-sink:#ee9393; --q-sink-bg:#432424;
+    --focus:#e8efec;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#101715; --surface:#18221f; --ink:#e8efec; --ink-2:#9fb0aa; --line:#2b3a36;
+  --now:#4cc2ac; --next:#7fa7e6; --later:#a2a7ae; --cut:#e57f7f;
+  --q-win:#6fd39b; --q-win-bg:#1c3a2b;
+  --q-bet:#8db4f2; --q-bet-bg:#1d2f4a;
+  --q-fill:#e0bf62; --q-fill-bg:#3a3118;
+  --q-sink:#ee9393; --q-sink-bg:#432424;
+  --focus:#e8efec;
+}
+*{box-sizing:border-box}
+html{color-scheme:light dark}
+:root[data-theme="light"]{color-scheme:light}
+:root[data-theme="dark"]{color-scheme:dark}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"Avenir Next","Segoe UI",Helvetica,Arial,sans-serif;
+  line-height:1.5; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1180px; margin:0 auto; padding:40px 24px 64px}
+header{display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; align-items:flex-end; margin-bottom:28px}
+h1{font-family:Georgia,"Times New Roman",serif; font-weight:700; font-size:clamp(28px,4vw,40px); letter-spacing:-.01em; margin:0 0 6px; line-height:1.1}
+.meta{color:var(--ink-2); font-size:14px; margin:0}
+.meta b{color:var(--ink); font-weight:600}
+.toolbar{display:flex; flex-wrap:wrap; gap:8px; align-items:center}
+button{font:inherit; cursor:pointer}
+.chip{
+  border:1px solid var(--line); background:var(--surface); color:var(--ink);
+  padding:6px 12px; border-radius:999px; font-size:13px; display:inline-flex; align-items:center; gap:7px;
+}
+.chip .dot{width:9px; height:9px; border-radius:50%; background:currentColor}
+.chip[aria-pressed="true"]{border-color:var(--ink); box-shadow:inset 0 0 0 1px var(--ink)}
+.chip:focus-visible,.card:focus-visible,.theme:focus-visible{outline:3px solid var(--focus); outline-offset:2px}
+.theme{border:1px solid var(--line); background:var(--surface); color:var(--ink); border-radius:8px; padding:6px 10px; font-size:13px}
+.legend{font-size:13px; color:var(--ink-2); margin:0 0 28px; max-width:78ch}
+
+.board{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; align-items:start}
+@media (max-width:900px){.board{grid-template-columns:1fr}}
+.lane{background:transparent}
+.lane-head{border-top:4px solid var(--c); padding-top:10px; margin-bottom:14px}
+.lane-head h2{margin:0; font-family:Georgia,serif; font-size:22px; color:var(--c)}
+.lane-head p{margin:2px 0 0; font-size:13px; color:var(--ink-2)}
+.lane.now{--c:var(--now)} .lane.next{--c:var(--next)} .lane.later{--c:var(--later)}
+.stack{display:flex; flex-direction:column; gap:12px; min-height:40px}
+
+.card{
+  --qc:var(--ink-2);
+  text-align:left; width:100%; background:var(--surface); color:var(--ink);
+  border:1px solid var(--line); border-left:5px solid var(--qc); border-radius:6px;
+  padding:14px 16px; display:block;
+}
+.card[data-q="win"]{--qc:var(--q-win)}
+.card[data-q="bet"]{--qc:var(--q-bet)}
+.card[data-q="fill"]{--qc:var(--q-fill)}
+.card[data-q="sink"]{--qc:var(--q-sink)}
+.card.dim{opacity:.28}
+.top{display:flex; justify-content:space-between; gap:10px; align-items:flex-start; margin-bottom:6px}
+.id{font-weight:700; font-size:13px; color:var(--ink-2); margin-right:6px}
+.name{font-weight:650; font-size:16px; line-height:1.3}
+.badge{
+  flex:none; font-size:12px; font-weight:600; padding:2px 9px; border-radius:999px;
+  background:var(--bg-q); color:var(--qc); border:1px solid var(--qc); white-space:nowrap;
+}
+.card[data-q="win"]{--bg-q:var(--q-win-bg)} .card[data-q="bet"]{--bg-q:var(--q-bet-bg)}
+.card[data-q="fill"]{--bg-q:var(--q-fill-bg)} .card[data-q="sink"]{--bg-q:var(--q-sink-bg)}
+.why{margin:0; font-size:14px; color:var(--ink-2)}
+.why strong{color:var(--ink); font-weight:600}
+.axes{display:none; margin-top:10px; padding-top:10px; border-top:1px dashed var(--line); font-size:13px; color:var(--ink-2)}
+.card[aria-expanded="true"] .axes{display:block}
+.hint{font-size:12px; color:var(--ink-2); margin-top:8px}
+
+.cut{margin-top:44px}
+.cut h2{font-family:Georgia,serif; font-size:22px; color:var(--cut); border-top:4px solid var(--cut); padding-top:10px; margin:0 0 4px}
+.cut > p{margin:0 0 14px; font-size:13px; color:var(--ink-2)}
+.cutgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:12px}
+.cut .card{background:transparent; border-style:dashed; border-left-style:solid}
+.cut .name{text-decoration:line-through; text-decoration-color:var(--cut); text-decoration-thickness:2px}
+footer{margin-top:36px; font-size:12px; color:var(--ink-2)}
+@media (prefers-reduced-motion:no-preference){.card{transition:opacity .15s}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>BU Collection roadmap</h1>
+      <p class="meta"><b>Brand:</b> BU Collection &nbsp;|&nbsp; <b>Team:</b> 6 people &nbsp;|&nbsp; <b>Updated:</b> <span id="date"></span></p>
+    </div>
+    <div class="toolbar" id="filters" role="group" aria-label="Filter by quadrant"></div>
+  </header>
+
+  <p class="legend">Quadrant badges rate each item on <b>impact on her plan-choice problem and the missed-payment gap</b> against <b>effort</b>. Select a badge to highlight matching cards; click a card to see how it was rated.</p>
+
+  <main class="board" id="board"></main>
+
+  <section class="cut" aria-labelledby="cut-h">
+    <h2 id="cut-h">Cut list</h2>
+    <p>Not building these. Reasons stay on record so they don’t come back unexamined.</p>
+    <div class="cutgrid" id="cut"></div>
+  </section>
+
+  <footer>
+    <button class="theme" id="theme" type="button">Toggle theme</button>
+    &nbsp; Quadrant ratings are working assumptions; adjust them in the data block at the top of the script.
+  </footer>
+</div>
+
+<script>
+const QUADS = {
+  win:  {label:"Quick win",  hint:"Moves her problem, low effort"},
+  bet:  {label:"Big bet",    hint:"Moves her problem, high effort"},
+  fill: {label:"Fill-in",    hint:"Smaller effect on her problem, low effort"},
+  sink: {label:"Time sink",  hint:"Weak effect on her problem, high cost or risk"}
+};
+
+const LANES = [
+  {key:"now",  title:"Now",   sub:"This sprint"},
+  {key:"next", title:"Next",  sub:"The following sprints"},
+  {key:"later",title:"Later", sub:"Backlog"}
+];
+
+const ITEMS = [
+  {id:"B2", name:"Income explainer", lane:"now", q:"win",
+   why:"Fixes her first Moment of Misery cheaply if it says which income to enter, but it only indirectly moves the missed-payment gap.",
+   axes:"Impact: indirect on the gap. Effort: low (copy and UI)."},
+  {id:"B5", name:"Mobile upload fix or skip document", lane:"now", q:"fill",
+   why:"Removes a real failure (T-201), but it is a conversion fix, not her plan-choice problem, and skipping the document could weaken affordability data.",
+   axes:"Impact: conversion, not plan choice. Effort: low. Risk: weaker affordability data if the document is skipped."},
+
+  {id:"B3", name:"Affordability check before plan options", lane:"next", q:"bet",
+   why:"Replaces her shortcut plan choice with a basis for choosing, the main lever on the 5.1-point shift-income missed-payment gap.",
+   axes:"Impact: high, the main lever on the gap. Effort: high."},
+  {id:"B1", name:"One plan for several claims", lane:"next", q:"sink",
+   why:"Strong for multi-claim consumers, but she has one or two claims and it would consume most of the quarter.",
+   axes:"Impact: low for her. Effort: most of the quarter."},
+
+  {id:"B4", name:"Agent handoff summary", lane:"later", q:"fill",
+   why:"Cuts agent re-asking (N-08), but it doesn’t change what she sees or whether her plan holds.",
+   axes:"Impact: agent efficiency, not her outcome. Effort: assumed low to moderate."},
+  {id:"B6", name:"Pay-day date", lane:"later", q:"fill",
+   why:"Plausible for missed payments, but unsupported by the research, and irregular shifts may not give her a fixed pay day.",
+   axes:"Impact: unproven. Effort: assumed low. Needs evidence before moving up."}
+];
+
+const CUT = [
+  {id:"B8", name:"Chat assistant on every page", q:"sink",
+   why:"The chat confirms plans without showing consequences (T-208), and chat users miss more (21.6% vs 18.3%), so it spreads her shortcut problem.",
+   axes:"Cut: it amplifies the shortcut behaviour the roadmap is trying to fix."},
+  {id:"B7", name:"Shortest plan first", q:"sink",
+   why:"Reject: it repeats the Month 4 change, when missed payments rose from 15.6% to 18.4%, and works against the guardrail.",
+   axes:"Cut: repeats a change already linked to a rise in missed payments."}
+];
+
+function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+
+function cardHTML(it){
+  const q = QUADS[it.q];
+  return `<button class="card" type="button" data-q="${it.q}" aria-expanded="false">
+    <div class="top">
+      <div><span class="id">${it.id}</span><span class="name">${esc(it.name)}</span></div>
+      <span class="badge" title="${esc(q.hint)}">${q.label}</span>
+    </div>
+    <p class="why">${esc(it.why)}</p>
+    <div class="axes">${esc(it.axes)}</div>
+  </button>`;
+}
+
+const board = document.getElementById("board");
+board.innerHTML = LANES.map(l => `
+  <section class="lane ${l.key}" aria-labelledby="h-${l.key}">
+    <div class="lane-head"><h2 id="h-${l.key}">${l.title}</h2><p>${l.sub}</p></div>
+    <div class="stack">${ITEMS.filter(i=>i.lane===l.key).map(cardHTML).join("")}</div>
+  </section>`).join("");
+document.getElementById("cut").innerHTML = CUT.map(cardHTML).join("");
+
+document.addEventListener("click", e=>{
+  const c = e.target.closest(".card");
+  if(!c) return;
+  c.setAttribute("aria-expanded", c.getAttribute("aria-expanded")==="true" ? "false" : "true");
+});
+
+const filters = document.getElementById("filters");
+let active = null;
+filters.innerHTML = Object.entries(QUADS).map(([k,v])=>
+  `<button class="chip" type="button" data-k="${k}" aria-pressed="false" style="color:var(--q-${k})">
+     <span class="dot"></span><span style="color:var(--ink)">${v.label}</span></button>`).join("");
+filters.addEventListener("click", e=>{
+  const b = e.target.closest(".chip"); if(!b) return;
+  active = (active === b.dataset.k) ? null : b.dataset.k;
+  filters.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed", String(x.dataset.k===active)));
+  document.querySelectorAll(".card").forEach(c=>c.classList.toggle("dim", !!active && c.dataset.q!==active));
+});
+
+document.getElementById("date").textContent = new Date().toLocaleDateString(undefined,{year:"numeric",month:"short",day:"numeric"});
+
+document.getElementById("theme").addEventListener("click", ()=>{
+  const r = document.documentElement;
+  const dark = r.getAttribute("data-theme")==="dark" ||
+    (!r.getAttribute("data-theme") && matchMedia("(prefers-color-scheme: dark)").matches);
+  r.setAttribute("data-theme", dark ? "light" : "dark");
+});
+</script>
+</body>
+</html>
