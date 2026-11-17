@@ -1,28 +1,28 @@
-# GTM Strategy & Success Dashboard (Module 6)
+# GTM Launch Plan, Riverty BU Collection, A Fair Way Forward
 
-## Get your prior work ready
-- **The feature you're launching from your M4 PRD, one feature, not a list:** Income explainer
-- **What your M5 experiment will test your hypothesis, primary metric and ship / iterate rule, the evidence the launch rests on:** I believe that an Income explainer for a consumer with one or two open claims who works irregular shifts and has no fixed monthly income will result in her reaching the income document step in the same session in which she reaches the income question, because she knows which income to enter and for which period, as measured by a 3pt change in the share of users who reach the affordability questions and then reach the income document step in the same session within 36 weeks. We will protect the 60-day missed-payment rate among shift-income agreements (baseline 22.5%) throughout the test. We will SHIP if the share of users who reach the affordability questions and then reach the income document step in the same session improves by ≥ 3pt at < 0.05 and the 60-day missed-payment rate among shift-income agreements (baseline 22.5%) does not reach +2.8 points (one-sided 95% upper bound for B minus A; Risk review at a point estimate above +1.0 point) after 36 weeks. We will ITERATE if direction is positive but lift is below MDE. We will KILL if the primary metric shows no improvement or moves negatively. The read date is fixed at the end of 36 weeks, no results reviewed before then.
-- **Your persona pull your M2 persona, this anchors your audience:** a consumer with one or two open claims who works irregular shifts and has no fixed monthly income
+| Field | Value |
+|---|---|
+| Feature | Income explainer |
+| Goal | Conversion |
+| Launch tier | M, Targeted |
 
-## Set your goal, then your audience
-- **Primary GTM goal awareness · engagement · conversion, pick one:** conversion
-- **Why this goal? what makes this the right goal for this feature right now:** convert more shift workers who reach the income question into users who complete the income step and reach the income document step in the same session, with the 60-day missed-payment rate protected.
-- **Target audience the specific segment your goal implies, be precise:** consumers in the instalment portal who reach the income question. Persona within them: shift-income consumers with one or two open claims. Targeted by place (the income step) and by message, not by user. Internal enablement audience: collection agents, Risk, Compliance and client account managers.
+## Goal & Audience
+- **Goal:** Conversion, convert more shift workers who reach the income question into users who complete the income step and reach the income document step in the same session, with the 60-day missed-payment rate protected.
+- **Target audience:** consumers in the instalment portal who reach the income question. Persona within them: shift-income consumers with one or two open claims. Targeted by place (the income step) and by message, not by user. Internal enablement audience: collection agents, Risk, Compliance and client account managers.
 
-## Size your launch
-- **Launch tier S (minimal) · M (targeted) · L (multi-channel) · XL (full GTM):** M  (targeted)
-- **Justification reach + revenue impact + what silence would risk:** About 3,700 users a month are exposed during 26 weeks of enrolment, and about 7,364 a month after a ship. Weeks 27 to 36: arms stay as assigned, nobody new is counted, nothing changes until the read. Upper-bound impact at a 3-point lift: about 140 extra agreements and €9,000 a month committed (about €7,300 intact at 60 days), assuming marginal users convert like average. Nothing is realised until a ship decision at week 36. M reflects the internal briefing for agents, Risk and client managers, not a consumer campaign.
-- **Is this a launch or a release? does it need go-to-market, or can it just ship?:** it can just ship
+## Launch Tier
+- **M, Targeted**, About 3,700 users a month are exposed during 26 weeks of enrolment, and about 7,364 a month after a ship. Weeks 27 to 36: arms stay as assigned, nobody new is counted, nothing changes until the read. Upper-bound impact at a 3-point lift: about 140 extra agreements and €9,000 a month committed (about €7,300 intact at 60 days), assuming marginal users convert like average. Nothing is realised until a ship decision at week 36. M reflects the internal briefing for agents, Risk and client managers, not a consumer campaign.
 
-## Choose your top three channels and plan assets
-- **Channel 1 owned / earned / paid, and why it reaches your audience:** Owned,active from launch: the income step in the instalment portal. It is the only channel that carries the message during the test.
-- **Channel 2 owned / earned / paid, and why:** Owned, held: SMS and email reminders, unchanged until a ship decision. After a ship, add a “have your net monthly pay ready” line.
-- **Channel 3 owned / earned / paid, and why:** Owned, enablement only: the agent phone line, same scripts and no new wording. After a ship, an updated script and training.
-- **Enablement & assets what Sales / CS / Support need, plus the assets to build (one-pager, demo, etc.):** One-page launch brief, Agent quick-reference card, Client talking points, Approval pack, Escalation and kill-switch runbook, Contact-reason code “income question”
+## Channels
+1. **Owned: active from launch: the income step in the instalment portal. It is the only channel that carries the message during the test.**
+2. **Owned: held: SMS and email reminders, unchanged until a ship decision. After a ship, add a “have your net monthly pay ready” line.**
+3. **Owned: enablement only: the agent phone line, same scripts and no new wording. After a ship, an updated script and training.**
 
-## Make it executable
-- **Ownership named owner per key activity, individual, not department:** The Risk / Credit Policy lead owns the approval of the income definition and the irregular-pay rule, due L-5 weeks. No extra cost.
+## Enablement & Assets
+One-page launch brief, Agent quick-reference card, Client talking points, Approval pack, Escalation and kill-switch runbook, Contact-reason code “income question”
+
+## Ownership, Budget & Timeline
+- **Ownership & budget:** The Risk / Credit Policy lead owns the approval of the income definition and the irregular-pay rule, due L-5 weeks. No extra cost.
 The content or UX writer owns the German copy and translations, due L-4 weeks. Extra cost: translation, if it is not done in-house (amount to be quoted).
 The Compliance reviewer owns the approval of the final copy and records the approval reference ID, due L-3 weeks. No extra cost.
 The Compliance reviewer owns the approval pack (approved copy, reference ID, version log, and the rule that any wording change goes back through approval), due L-3 weeks. No extra cost.
@@ -43,6 +43,8 @@ The engineering lead owns the change freeze on the income step and plan screen f
 The Risk lead can pull the kill switch alone. The PM can pull it on a safety incident and tells the Risk lead the same day.
 The PM owns getting quotes for translation and participant incentives, due L-5 weeks.
 The PM owns the decision communication to agents, Risk, Compliance and client managers, due week 38.
+Budget: no media or campaign spend. Amounts for translation, participant incentives, analyst time, sprint capacity and agent briefing time are not yet approved. The PM owns getting the quotes by L-5 weeks, and the head of product approves a total cap before launch.
+Asset gaps before launch: the approved wording, the German copy, a production screenshot for the agent card, the guardrail dashboard, and the agent team size.
 The agent team lead owns confirming the agent team size and who takes income-related calls, due L-3 weeks.
 The PM owns the production screenshot for the agent card, due L-1 week.
 The PM owns the rollout brief if the explainer ships, due week 40.
@@ -50,9 +52,7 @@ The agent team lead owns the updated agent script and training if the explainer 
 The marketing lead owns the updated “have your net monthly pay ready” line if the explainer ships, due week 42.
 The data analyst owns the 60-day missed-payment tracking after a ship, reported monthly to the Risk lead.
 The engineering lead executes any kill-switch request, or the shutdown after a killed test, within 1 hour.
-- **Budget & resource gaps what costs extra, and any asset you can't currently build:** Budget: no media or campaign spend. Amounts for translation, participant incentives, analyst time, sprint capacity and agent briefing time are not yet approved. The PM owns getting the quotes by L-5 weeks, and the head of product approves a total cap before launch.
-Asset gaps before launch: the approved wording, the German copy, a production screenshot for the agent card, the guardrail dashboard, and the agent team size.
-- **Timeline Phase 1 beta → Phase 2 launch moment → Phase 3 post-launch:** Phase 1: Beta (L-5 weeks to L)
+- **Timeline:** Phase 1: Beta (L-5 weeks to L)
 
 L-5 to L-3 weeks: the Risk / Credit Policy lead approves the income definition and irregular-pay rule. The writer produces the German copy. The Compliance reviewer approves it and records the reference ID.
 L-3 weeks: the data analyst re-measures the same-session baseline, fixes the shift-income classification and checks the real weekly agreement count.
@@ -76,9 +76,9 @@ Week 36: the PM reads the result once. The Risk lead signs off in writing if the
 Weeks 37 to 38: decide. If it ships, build the rollout brief, an updated agent script with training, and an updated reminder message. If it iterates, plan the next test, with no extension. If it is killed, turn the explainer off.
 After a ship, keep tracking the 60-day missed-payment rate as follow-up.
 
-## Define how you'll know it worked
-- **Success metrics 2 to 3 metrics that match your GTM goal:** Primary: the share of users who reach the affordability questions and then reach the income document step in the same session. Baseline 80.7% (re-measure before launch). Success: +3.0 points or more, p < 0.05, read once at week 36. Also report the persona subgroup.
+## Success Metrics
+- **Metrics:** Primary: the share of users who reach the affordability questions and then reach the income document step in the same session. Baseline 80.7% (re-measure before launch). Success: +3.0 points or more, p < 0.05, read once at week 36. Also report the persona subgroup.
 Quality: the share of uploaded income documents needing review. Baseline 28.0%. Success: B no more than 2.0 points above A.
 Protection: the 60-day missed-payment rate among shift-income agreements. Baseline 22.5%. Success: one-sided 95% upper bound for B minus A below +2.8 points. Companion: kept agreements per 100 randomised shift-income users no lower than A.
-- **Bad signal to watch for e.g. high reach, zero signups = message-market mismatch:** documents needing review in B is more than 2.0 points above A while reach rises. People were pushed through with a guess, so the lift is not a win, and a guardrail failure overrides it. Read at week 36, not before.
-- **Most likely post-launch decision double-down · iterate · pivot · deprioritize, and what would trigger it:** one pre-registered safety look at week 8 on documents needing review only. If B is more than 4.0 points above A, the PM turns the explainer off and the Risk lead reviews within 5 working days. This catches large harm only; the +2.0 limit is decided at week 36.
+- **Bad signal to watch for:** documents needing review in B is more than 2.0 points above A while reach rises. People were pushed through with a guess, so the lift is not a win, and a guardrail failure overrides it. Read at week 36, not before.
+- **Likely post-launch decision:** one pre-registered safety look at week 8 on documents needing review only. If B is more than 4.0 points above A, the PM turns the explainer off and the Risk lead reviews within 5 working days. This catches large harm only; the +2.0 limit is decided at week 36.
