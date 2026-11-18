@@ -53,12 +53,12 @@ User action
 Confirms plan, sees missed-payment rules → trusts the commitment.
 
 Internal state
-Plan, reasoning and override trail logged → Daniel skips repeat checks.
+Plan, reasoning and override trail logged → agents skip repeat checks.
 
 Pain point addressed
 Fear of consequences and missed payments → early help path.
 
 ## Competitive advantages
 Fewer drop-offs: Plain-language income prompts and a “safe amount” default replace call-back guesswork, so the customer finishes the journey the first time.
-No repeated checks for agents: Entered data, confidence flags and reasons arrive with the case, so Daniel corrects exceptions instead of re-asking everything.
+No repeated checks for agents: Entered data, confidence flags and reasons arrive with the case, so agents correct exceptions instead of re-asking everything.
 Plans built to be kept: Affordability-bounded options reduce missed payments, so a rising SSR reflects better outcomes rather than plans that collapse.
