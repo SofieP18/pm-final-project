@@ -7,7 +7,7 @@
 > Based on that agreements with missed payment during 60 days is 19%, we believe that solving the income and plan commitments questions at the moment of decision for a consumer with one or two open claims who works irregular shifts and has no fixed monthly income will result in finishing the income step in one sitting, that she chooses a plan by its terms and consequences instead of by screen order or length.
 She also keeps the first payments, because she knew what she was committing to and she calls an agent only when she wants advice. It maps to Retention when an a agreement is kept, 
 Churn by minimizing abandoned journeys and broken plans, and
-Revenue when instalments actually is collected., as measured by when the reached income document step gets over 83.7%. We will protect when the shift-income rate falls toward the fixed-salary rate (22.5% vs 17.4% for fixed salary), a 5.1-point fall ideally with the 60-day rate following later as confirmation and make a go/no-go decision after run a roughly 3-month 50/50 test on shift-income starters, and scale only if their missed-payment rate falls at least 4 points with durable agreements per 100 starters within 1 point of control; otherwise extend once, pivot, or roll back.
+Revenue when instalments actually is collected., as measured by when the reached income document step gets over 83.7%. We will protect the 60-day missed-payment rate among shift-income agreements (baseline 22.5%, versus 17.4% for fixed salary) and make a go/no-go decision after a 50/50 test on shift-income starters, read once at week 36. We will ship if reach improves by at least 3 points and the 60-day missed-payment rate stays within the guardrail (upper bound below +2.8 points, with kept agreements per 100 starters no lower than control); otherwise iterate or kill.
 
 ## Evidence
 - **Qualitative (M2):** agrees to a plan without understanding the consequences
@@ -25,5 +25,5 @@ She also keeps the first payments, because she knew what she was committing to a
 Churn by minimizing abandoned journeys and broken plans, and
 Revenue when instalments actually is collected.
 - **Primary success metric:** when the reached income document step gets over 83.7%
-- **Guardrail metric:** when the shift-income rate falls toward the fixed-salary rate (22.5% vs 17.4% for fixed salary), a 5.1-point fall ideally with the 60-day rate following later as confirmation
-- **Decision window:** run a roughly 3-month 50/50 test on shift-income starters, and scale only if their missed-payment rate falls at least 4 points with durable agreements per 100 starters within 1 point of control; otherwise extend once, pivot, or roll back
+- **Guardrail metric:** the 60-day missed-payment rate among shift-income agreements (baseline 22.5%, versus 17.4% for fixed salary)
+- **Decision window:** run a 50/50 test on shift-income starters, read once at week 36. Ship if reach improves by at least 3 points and the 60-day missed-payment rate stays within the guardrail (upper bound below +2.8 points, kept agreements per 100 starters no lower than control); otherwise iterate or kill
