@@ -11,8 +11,8 @@
 Today, Riverty launched a plain-language income explainer in its German instalment portal. At the income field, consumers with irregular pay now see which income to enter and what to do when pay varies, in a few lines readable on a phone during a break. They can answer in one sitting, with confidence, instead of closing the page meaning to come back.
 
 It is the first step of “A Fair Way Forward”, Riverty’s effort to help consumers agree to repayment plans they understand and can keep.
-- **Success metric:** When the reached income document step gets over 80.7%
-- **Guardrail:** When the shift-income rate falls toward the fixed-salary rate (22.5% vs 17.4% for fixed salary), a 5.1-point fall ideally with the 60-day rate following later as confirmation.
+- **Success metric:** When the reached income document step gets 3 points above 80.7% (83.7% or more)
+- **Guardrail:** The 60-day missed-payment rate among shift-income agreements stays protected (baseline 22.5%, versus 17.4% for fixed salary).
 
 ## 2. The Details
 ### User stories
@@ -31,7 +31,7 @@ It is the first step of “A Fair Way Forward”, Riverty’s effort to help con
 - FR-5: The explainer gives one rule for working out a typical month when pay is irregular. The approved rule from Risk appears in 100% of explainer displays. Exactly one rule is shown, with no alternatives.
 - FR-6: The income field’s schema, validation and required status are unchanged, and no screen or step is added before the document step.	Zero differences in field rules in regression tests against the current release. The step count before the document step is the same as the baseline.
 - FR-7: No explainer copy goes live without recorded Compliance or Risk approval.	100% of live copy versions carry an approval reference [ID, approver, date]. Release is blocked if one is missing.
-- FR-8: The funnel events needed for the primary metric are logged. Five events are captured: income step reached, explainer opened, income edited after explainer viewed, document step reached, and drop-off at the income field. Event capture is at least 80.7% against a manual QA check. The denominator and window are written into the PRD.
+- FR-8: The funnel events needed for the primary metric are logged. Five events are captured: income step reached, explainer opened, income edited after explainer viewed, document step reached, and drop-off at the income field. Event capture is at least 95% against a manual QA check, identical in both arms. The denominator and window are written into the PRD.
 ### Smart behaviors (Situation → Outcome)
 - If she lands on the income step, then show the one-line helper and the “Which income do I enter?” trigger without scrolling.
 - If she taps the trigger, then open the explainer in place and keep anything she has already typed.
@@ -41,7 +41,7 @@ It is the first step of “A Fair Way Forward”, Riverty’s effort to help con
 - If she edits the income field after viewing the explainer, then log “income edited after explainer viewed” and apply the existing validation unchanged.
 - If her entry fails the existing validation, then show the standard error and keep the trigger visible.
 - If she completes the income step, then show the basis of what she entered (for example “Monthly net income: [value]”) and enable Continue to the document step.
-- If she reaches the document step, then log it against the primary metric (target above 80.7%).
+- If she reaches the document step, then log it against the primary metric (target 83.7% or more, 3 points above the 80.7% baseline).
 - If she leaves the income step without completing it, then log the drop-off at the income field, with or without an explainer view.
 - If the explainer fails to load, then keep the helper line and the income field working so she can still proceed, and log the failure. The feature must never block the step.
 - If copy has no recorded Compliance or Risk approval, then block the release (FR-7).
@@ -92,7 +92,7 @@ It is the first step of “A Fair Way Forward”, Riverty’s effort to help con
 - Safety: does it avoid every “never”? ≥ 100% pass, with 0 violations
 
 ## MoSCoW scope
-- **Must:** Inline explainer at the income field. It sits on the same screen, with no link out, and works on mobile. If it sends her away from the step, it can only hurt the reach rate.; One plain rule for which income to enter, including irregular shifts. It states the basis (net or gross), the period, and how to arrive at a typical month when pay varies. This is the Moment of Misery, so a feature without it does nothing. Risk or Credit Policy must supply the definition.; Approved copy. Compliance or Risk signs off, because the wording defines the data behind the affordability check.; No change to the income field’s data or validation. The schema, required status and rules stay as they are. This protects the affordability data and avoids a dev dependency inside one sprint.; Instrumentation for the metric. Log the step-reach rate with a pinned denominator, explainer viewed, and drop-off at the income field. Without this you can’t tell whether 80.7% was hit.
+- **Must:** Inline explainer at the income field. It sits on the same screen, with no link out, and works on mobile. If it sends her away from the step, it can only hurt the reach rate.; One plain rule for which income to enter, including irregular shifts. It states the basis (net or gross), the period, and how to arrive at a typical month when pay varies. This is the Moment of Misery, so a feature without it does nothing. Risk or Credit Policy must supply the definition.; Approved copy. Compliance or Risk signs off, because the wording defines the data behind the affordability check.; No change to the income field’s data or validation. The schema, required status and rules stay as they are. This protects the affordability data and avoids a dev dependency inside one sprint.; Instrumentation for the metric. Log the step-reach rate with a pinned denominator, explainer viewed, and drop-off at the income field. Without this you can’t tell whether the 83.7% target was hit.
 - **Should:** Log income edited after the explainer is viewed. This is a leading signal that the explainer changed behaviour.; One worked example for a shift worker. It uses clearly illustrative numbers.; “What counts / what doesn’t” list. It covers overtime, shift premiums, benefits and second jobs, collapsed by default so the step stays short.; Accessibility and translation of the copy. If company standards require these, they move to Must.; Guardrail monitoring. Watch the missed-payment rate and affordability data quality alongside the primary metric. A step-reach metric can be hit by pushing people through with a wrong number.
 - **Could:** Employment-type variants of the copy.; Averaging helper that calculates a typical month from recent pay periods.; Sanity nudge for entries that look like the wrong basis.; Copy A/B tests.; Pre-fill from earlier entries.
 - **Won't (now):** Mobile upload fix or skipping the document (B5). This acts after the step is reached, so it doesn’t move this metric. It also risks weakening affordability data.; Affordability check or plan recommendations (B3).; Chat assistant (B8), agent handoff summary (B4), pay-day date (B6) and multi-claim plans (B1).; Income verification or a bank-data pull.; Redesign of the income step or changes to which fields are required.; Any extra step or screen before the document step. It would work against the metric.

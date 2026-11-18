@@ -6,9 +6,9 @@
 
 ## Strategic anchors
 - **Persona:** A consumer with one or two open claims who works irregular shifts and has no fixed monthly income
-- **Primary metric:** When the reached income document step gets over 80.7%
+- **Primary metric:** When the reached income document step gets 3 points above 80.7% (83.7% or more)
 - **Moment of misery:** On her break, the portal asks for her income and she cannot tell whether it means this month or a normal month. She closes the journey intending to return. In the version of her story where she does continue, she picks the plan with the fewest months because it looks like the “right answer,” finds the amount too high, and misses the second payment
-- **Guardrail:** When the shift-income rate falls toward the fixed-salary rate (22.5% vs 17.4% for fixed salary), a 5.1-point fall ideally with the 60-day rate following later as confirmation.
+- **Guardrail:** The 60-day missed-payment rate among shift-income agreements stays protected (baseline 22.5%, versus 17.4% for fixed salary).
 
 ## Scoring
 | Feature | Value | Effort | Quadrant | Decision | Rationale |
