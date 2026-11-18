@@ -86,6 +86,7 @@ It is the first step of “A Fair Way Forward”, Riverty’s effort to help con
 ### Decision log
 - Explains the income question and does not act on the answer
 - Front-end and copy only: no API, DB or logic change
+- The journey map has four stages. This release covers stage 2 only, as an explainer layer. Stages 1, 3 and 4 follow with B1 and B3.
 ### Evals
 - Accuracy: does she enter the right income? ≥ 90% of test participants enter the income asked for
 - Time-on-task: can she finish on her break? ≥ a median of 60 seconds or less from income step viewed to income confirmed on mobile, with the slowest 10% under 120 seconds
